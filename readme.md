@@ -1,5 +1,1 @@
-##Test
-
-Hello
-
-hello 2
+# Just a simple wordpress Plugin
