@@ -32,4 +32,8 @@ define('CMCW_VERSION', '1.0.0');
 
 // Load the plugin
 
-require_once CMCW_PATH . 'includes/Shortcode.php';
+require_once CMCW_PATH . 'includes/shortcode/Shortcode.php';
+
+// Load Elementor Widget
+
+require_once CMCW_PATH . '/includes/elementor-widget/widget-loader.php';

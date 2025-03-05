@@ -1,0 +1,5 @@
+.cmcw-widget-container svg {
+  max-width: 24px; /* Set default width */
+  max-height: 24px; /* Set default height */
+  fill: #007bff; /* Set default color */
+}
