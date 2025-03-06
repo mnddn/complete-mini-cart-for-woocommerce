@@ -9,7 +9,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
     /**
      * Get widget name.
      *
-     * Retrieve oEmbed widget name.
+     * Retrieve cmcw_mini_cart widget name.
      *
      * @since 1.0.0
      * @access public
@@ -23,7 +23,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
     /**
      * Get widget title.
      *
-     * Retrieve oEmbed widget title.
+     * Retrieve cmcw_mini_cart widget title.
      *
      * @since 1.0.0
      * @access public
@@ -36,7 +36,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
     /**
      * Get widget icon.
      *
-     * Retrieve oEmbed widget icon.
+     * Retrieve cmcw_mini_cart widget icon.
      *
      * @since 1.0.0
      * @access public
@@ -44,12 +44,12 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
      */
     public function get_icon(): string
     {
-        return 'eicon-product-info 0xe8d8';
+        return 'eicon-product-info';
     }
     /**
      * Get widget categories.
      *
-     * Retrieve the list of categories the oEmbed widget belongs to.
+     * Retrieve the list of categories the cmcw_mini_cart widget belongs to.
      *
      * @since 1.0.0
      * @access public
@@ -62,7 +62,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
     /**
      * Get widget keywords.
      *
-     * Retrieve the list of keywords the oEmbed widget belongs to.
+     * Retrieve the list of keywords the cmcw_mini_cart widget belongs to.
      *
      * @since 1.0.0
      * @access public
@@ -71,6 +71,21 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
     public function get_keywords(): array
     {
         return ['mini', 'cart', 'woocommerce', 'shop', 'store'];
+    }
+
+    /**
+     * Add style Dependencies.
+     *
+     * Retrieve the list of style handles the cmcw_mini_cart widget belongs to.
+     *
+     * @since 1.0.0
+     * @access public
+     * @return array Widget keywords.
+     */
+
+    public function get_style_depends(): array
+    {
+        return ['style-handle'];
     }
     /**
      * Get custom help URL.
@@ -87,7 +102,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
     }
 
     /**
-     * Register oEmbed widget controls.
+     * Register cmcw_mini_cart widget controls.
      *
      * Add input fields to allow the user to customize the widget settings.
      *
@@ -111,7 +126,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                 'label' => esc_html__('Icon', 'cmcw'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'fas fa-circle',
+                    'value' => 'fas fa-cart-plus',
                     'library' => 'fa-solid',
                 ],
                 'recommended' => [
@@ -133,7 +148,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
 
     }
     /**
-     * Render oEmbed widget output on the frontend.
+     * Render cmcw_mini_cart widget output on the frontend.
      *
      * Written in PHP and used to generate the final HTML.
      *
@@ -146,6 +161,26 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
 
         if (class_exists('WooCommerce') && isset(WC()->cart)) {
             ?>
+            <a href="<?php echo wc_get_cart_url(); ?>">
+                <div class="cmcw-widget-container">
+                    <style>
+                        .cmcw-widget-container svg {
+                            max-width: 24px;
+                            /* Set default width */
+                            max-height: 24px;
+                            /* Set default height */
+                            fill: #000000;
+                            /* Set default color */
+                        }
+                    </style>
+                    <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
+                    <span class="cmcw-cart-count-elementor"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                </div>
+            </a>
+            <?php
+        } else {
+            ?>
+            <a href="<?php wc_get_cart_url(); ?>"></a>
             <div class="cmcw-widget-container">
                 <style>
                     .cmcw-widget-container svg {
@@ -158,15 +193,10 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                     }
                 </style>
                 <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
-                <span class="cmcw-cart-count"><?php WC()->cart->get_cart_contents_count(); ?></span>
+                <span class="cmcw-cart-count-elementor">0</span>
             </div>
-            <?php
-        } else {
-            ?>
-            <span class="cmcw-cart-count">0</span>
+            </a>
             <?php
         }
     }
 }
-
-new Cmcw_Mini_Cart();

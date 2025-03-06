@@ -1,19 +1,31 @@
+.cmcw-shortcode-container {
+  position: relative;
+  display: inline-block;
+  width: 25px; /* Adjust size as needed */
+  height: 25px;
+}
+
 .cmcw-cart-count {
   background-color: rgba(231, 92, 18, 0.819);
   color: #000000;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 50px; /* Smooth rounded edges */
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  font-size: 10px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
   text-align: center;
-  /* display: inline-block; */
-  position: relative;
-  top: -8px;
-  right: -8px;
-  transition: all 0.3s ease-in-out;
-  padding: 5px 10px;
-  margin: 0 auto;
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.cmcw-cart-count:hover {
-  transform: scale(1.1);
+.cmcw-shortcode-container svg {
+  width: 100%;
+  height: 100%;
+  fill: #000000;
+  margin-bottom: -3px;
+  /* Set default color */
 }

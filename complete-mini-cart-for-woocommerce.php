@@ -21,19 +21,76 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Define the plugin path
-define('CMCW_PATH', plugin_dir_path(__FILE__));
+class CMCW_Plugin
+{
+    /**
+     * Singleton instance
+     */
+    private static $instance = null;
 
-// Define the plugin URL
-define('CMCW_URL', plugin_dir_url(__FILE__));
+    /**
+     * Get the singleton instance
+     */
+    public static function get_instance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 
-// Define the plugin version
-define('CMCW_VERSION', '1.0.0');
+    /**
+     * Constructor: Setup plugin
+     */
+    private function __construct()
+    {
+        $this->define_constants();
+        $this->load_dependencies();
+        add_action('plugins_loaded', [$this, 'init']);
+    }
 
-// Load the plugin
+    /**
+     * Define plugin constants
+     */
+    private function define_constants()
+    {
+        define('CMCW_PATH', plugin_dir_path(__FILE__));
+        define('CMCW_URL', plugin_dir_url(__FILE__));
+        define('CMCW_VERSION', '1.0.0');
+    }
 
-require_once CMCW_PATH . 'includes/shortcode/Shortcode.php';
+    /**
+     * Load required plugin files
+     */
+    private function load_dependencies()
+    {
+        // Load the shortcode class
+        require_once CMCW_PATH . 'includes/shortcode/Shortcode.php';
+    }
 
-// Load Elementor Widget
+    /**
+     * Initialize plugin features
+     */
+    public function init()
+    {
+        // Check if Elementor is active
+        if (!did_action('elementor/loaded')) {
+            return;
+        }
 
-require_once CMCW_PATH . '/includes/elementor-widget/widget-loader.php';
+        // Load Elementor Widget
+        require_once CMCW_PATH . 'includes/elementor-widget/widget-loader.php';
+        new Cmcw_Widget_Loader();
+    }
+
+    /**
+     * Admin notice if Elementor is not active
+     */
+    public function missing_elementor_notice()
+    {
+        echo '<div class="notice notice-error"><p><strong>CMCW Plugin</strong> requires Elementor to be installed and activated.</p></div>';
+    }
+}
+
+// Initialize the plugin
+CMCW_Plugin::get_instance();
