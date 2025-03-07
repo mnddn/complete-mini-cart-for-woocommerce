@@ -129,18 +129,6 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                     'value' => 'fas fa-cart-plus',
                     'library' => 'fa-solid',
                 ],
-                'recommended' => [
-                    'fa-solid' => [
-                        'circle',
-                        'dot-circle',
-                        'square-full',
-                    ],
-                    'fa-regular' => [
-                        'circle',
-                        'dot-circle',
-                        'square-full',
-                    ]
-                ],
             ]
         );
 

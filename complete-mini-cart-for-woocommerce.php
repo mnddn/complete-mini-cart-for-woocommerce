@@ -45,8 +45,10 @@ class CMCW_Plugin
     private function __construct()
     {
         $this->define_constants();
+        $this->load_admin_submenu_page();
         $this->load_dependencies();
         add_action('plugins_loaded', [$this, 'init']);
+        add_filter('walker_nav_menu_start_el', [$this, 'enable_short_code_support'], 10, 2);
     }
 
     /**
@@ -89,6 +91,16 @@ class CMCW_Plugin
     public function missing_elementor_notice()
     {
         echo '<div class="notice notice-error"><p><strong>CMCW Plugin</strong> requires Elementor to be installed and activated.</p></div>';
+    }
+
+    public function enable_short_code_support($item_output, $item)
+    {
+        return do_shortcode($item_output); // Process shortcode in menu item
+    }
+
+    public function load_admin_submenu_page()
+    {
+        require_once CMCW_PATH . '/includes/admin/AdminLoaderCMCW.php';
     }
 }
 
