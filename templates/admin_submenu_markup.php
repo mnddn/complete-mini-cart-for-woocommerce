@@ -1,3 +1,11 @@
+<?php
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+?>
+
 <div class="wrap">
     <h1>Mini Cart Shortcode Styles</h1>
     <p>Use this shortcode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> [cmcw_mini_cart] </strong></p>
