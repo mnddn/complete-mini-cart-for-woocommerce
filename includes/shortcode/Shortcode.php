@@ -53,7 +53,7 @@ class Shortcode
             .cmcw-shortcode-container svg {
             width: 100%;
             height: 100%;
-            fill: ' . get_option('icon_color', '#000000') . ';
+            fill: ' . get_option('icon_color', '##FF3A3A') . ';
             margin-bottom: -3px;
             }
             </style>';
