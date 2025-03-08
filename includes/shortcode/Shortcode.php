@@ -40,6 +40,8 @@ class Shortcode
             $cart_count = WC()->cart->get_cart_contents_count();
             $style = '<style>
             .cmcw-shortcode-container {
+            position: relative;
+            display: inline-block;
             height:' . get_option('icon_size') . 'px; width:' . get_option('icon_size', '20') . 'px; 
             margin:' . get_option('box_margin', '0') . 'px;
             }
