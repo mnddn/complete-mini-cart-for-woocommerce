@@ -58,7 +58,7 @@ class Shortcode
             width: 100%;
             height: 100%;
             font-size: ' . get_option('icon_size', '20') . 'px;
-            color: ' . get_option('icon_color', '##FF3A3A') . ';
+            color: ' . get_option('icon_color', '#FF3A3A') . ';
             margin-bottom: -3px;
             }
             </style>';
