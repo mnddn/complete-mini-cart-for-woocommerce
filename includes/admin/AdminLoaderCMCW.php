@@ -41,13 +41,13 @@ class AdminLoaderCMCW
         wp_enqueue_style('cmcw-admin-css', CMCW_URL . 'assets/css/admin.css', [], CMCW_VERSION);
         wp_enqueue_script('cmcw-admin-js', CMCW_URL . 'assets/js/admin.js', ['jquery'], CMCW_VERSION, true);
         wp_enqueue_style('wp-color-picker');
-        wp_enqueue_script('cmcw-admin_js', CMCW_URL . '/src/js/admin.js', array('wp-color-picker'), false, true);
+        wp_enqueue_script('cmcw-admin_js', CMCW_URL . '/src/js/admin.js', array('wp-color-picker'), CMCW_VERSION, true);
         // FontAwesome (for icons)
-        wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+        wp_enqueue_style('cmcw-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
         // FontAwesome Icon Picker
-        wp_enqueue_style('iconpicker-css', 'https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/css/fontawesome-iconpicker.min.css');
-        wp_enqueue_script('iconpicker-js', 'https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/js/fontawesome-iconpicker.min.js', array('jquery'), null, true);
+        wp_enqueue_style('cmcw-iconpicker-css', 'https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/css/fontawesome-iconpicker.min.css');
+        wp_enqueue_script('cmcw-iconpicker-js', 'https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/js/fontawesome-iconpicker.min.js', array('jquery'), null, true);
 
     }
 
