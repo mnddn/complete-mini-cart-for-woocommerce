@@ -86,6 +86,7 @@ class AdminLoaderCMCW
         register_setting('cmcw_settings', 'icon_size');
         register_setting('cmcw_settings', 'count_size');
         register_setting('cmcw_settings', 'box_margin');
+        register_setting('cmcw_settings', 'count_position');
 
         add_settings_section(
             'cmcw_settings_section',
@@ -100,6 +101,7 @@ class AdminLoaderCMCW
         add_settings_field('icon_color', 'Icon Color', [$this, 'icon_color_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
         add_settings_field('icon_size', 'Icon Size', [$this, 'icon_size_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
         add_settings_field('count_size', 'Cart Count Size', [$this, 'count_size_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('count_position', 'Cart Count Position', [$this, 'count_position_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
         add_settings_field('box_margin', 'Box Margin', [$this, 'box_margin_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
     }
 
@@ -151,6 +153,11 @@ class AdminLoaderCMCW
     {
         $value = get_option('count_size');
         echo '<input type="number" name="count_size" value="' . esc_attr($value) . '" />';
+    }
+    public function count_position_callback()
+    {
+        $value = get_option('count_position');
+        echo '<input type="number" name="count_position" value="' . esc_attr($value) . '" />';
     }
 
     public function box_margin_callback()
