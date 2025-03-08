@@ -2,7 +2,7 @@
 
 /*
  * Plugin Name:       Mini Cart for WooCommerce
- * Plugin URI:        https://example.com/plugins/the-basics/
+ * Plugin URI:        https://cmcw.mnddn.site/
  * Description:       This plugin adds a mini cart feature to your WooCommerce store. An Elementor Widget and a shortcode. All that you needed in one simple plugin.
  * Version:           1.0.2
  * Requires at least: 6.0
