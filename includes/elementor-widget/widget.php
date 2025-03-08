@@ -112,6 +112,8 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
     protected function register_controls(): void
     {
 
+        // Content Section for Icon Selection
+
         $this->start_controls_section(
             'content_section',
             [
@@ -134,6 +136,143 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+        // Style Section For Icon Styles
+
+        $this->start_controls_section(
+            'section_icon_style',
+            [
+                'label' => esc_html__('Icon Style', 'cmcw'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'color',
+            [
+                'label' => esc_html__('Color', 'cmcw'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#000000',
+                'selectors' => [
+                    '{{WRAPPER}} .cmcw-widget-container svg' => 'fill: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'size',
+            [
+                'label' => esc_html__('Size', 'cmcw'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'range' => [
+                    'px' => ['min' => 10, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .cmcw-widget-container' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // Style Section For Cart Count Styles
+
+        $this->start_controls_section(
+            'section_count_style',
+            [
+                'label' => esc_html__('Cart Count Style', 'cmcw'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'count_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'cmcw'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ff3a3a',
+                'selectors' => [
+                    '{{WRAPPER}} .cmcw-cart-count-elementor' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'count_text_color',
+            [
+                'label' => esc_html__('Text Color', 'cmcw'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => [
+                    '{{WRAPPER}} .cmcw-cart-count-elementor' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'count_size',
+            [
+                'label' => esc_html__('Font Size', 'cmcw'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'range' => [
+                    'px' => ['min' => 10, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .cmcw-cart-count-elementor' => 'font-size: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'count_top_position',
+            [
+                'label' => esc_html__('Position From Top', 'cmcw'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 5,
+                ],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 50],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .cmcw-cart-count-elementor' => 'top: -{{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'count_left_position',
+            [
+                'label' => esc_html__('Position From Left', 'cmcw'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 5,
+                ],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 50],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .cmcw-cart-count-elementor' => 'left: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+
     }
     /**
      * Render cmcw_mini_cart widget output on the frontend.
@@ -151,16 +290,6 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
             ?>
             <a href="<?php echo wc_get_cart_url(); ?>">
                 <div class="cmcw-widget-container">
-                    <style>
-                        .cmcw-widget-container svg {
-                            max-width: 24px;
-                            /* Set default width */
-                            max-height: 24px;
-                            /* Set default height */
-                            fill: #000000;
-                            /* Set default color */
-                        }
-                    </style>
                     <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
                     <span class="cmcw-cart-count-elementor"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                 </div>
@@ -168,18 +297,8 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
             <?php
         } else {
             ?>
-            <a href="<?php wc_get_cart_url(); ?>"></a>
+            <a href="#"></a>
             <div class="cmcw-widget-container">
-                <style>
-                    .cmcw-widget-container svg {
-                        max-width: 24px;
-                        /* Set default width */
-                        max-height: 24px;
-                        /* Set default height */
-                        fill: #000000;
-                        /* Set default color */
-                    }
-                </style>
                 <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
                 <span class="cmcw-cart-count-elementor">0</span>
             </div>
