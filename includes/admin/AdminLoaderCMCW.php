@@ -42,6 +42,12 @@ class AdminLoaderCMCW
         wp_enqueue_script('cmcw-admin-js', CMCW_URL . 'assets/js/admin.js', ['jquery'], CMCW_VERSION, true);
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_script('cmcw-admin_js', CMCW_URL . '/src/js/admin.js', array('wp-color-picker'), false, true);
+        // FontAwesome (for icons)
+        wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+        // FontAwesome Icon Picker
+        wp_enqueue_style('iconpicker-css', 'https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/css/fontawesome-iconpicker.min.css');
+        wp_enqueue_script('iconpicker-js', 'https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/js/fontawesome-iconpicker.min.js', array('jquery'), null, true);
 
     }
 
@@ -96,6 +102,7 @@ class AdminLoaderCMCW
         add_settings_field('count_size', 'Cart Count Size', [$this, 'count_size_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
         add_settings_field('box_margin', 'Box Margin', [$this, 'box_margin_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
     }
+
     public function submenu_section_template()
     {
         require_once CMCW_PATH . 'templates/admin_submenu_markup.php';
@@ -108,8 +115,12 @@ class AdminLoaderCMCW
 
     public function icon_name_callback()
     {
-        $value = get_option('icon_name', '');
-        echo '<input type="text" name="icon_name" value="' . esc_attr($value) . '" />';
+        $value = get_option('icon_name');
+        ?>
+        <input class="cmcw-icon-name" type="text" name="icon_name" value="<?php echo esc_attr($value) ?>" />
+        <i class="<?php echo esc_attr($value) ?>"
+            title="Enter the icon name from Font Awesome. For example, 'fas fa-shopping-cart'"></i>
+        <?php
     }
 
     public function count_bg_color_callback()

@@ -8,7 +8,7 @@ class Shortcode
 {
     public function __construct()
     {
-        add_action('wp_enqueue_scripts', array($this, 'cmcw_scripts'));
+        add_action('wp_enqueue_scripts', array($this, 'cmcw_scripts'), 100);
         add_shortcode('cmcw_mini_cart', array($this, 'cmcw_mini_cart_shortcode'));
         add_action('wp_ajax_nopriv_cmcw_update_cart_count', array($this, 'cmcw_update_cart_count'));
         add_action('wp_ajax_cmcw_update_cart_count', array($this, 'cmcw_update_cart_count'));
@@ -26,23 +26,25 @@ class Shortcode
             wp_localize_script('cmcw-script', 'cmcwCount', array(
                 'cmcw_ajax_url' => admin_url('admin-ajax.php'),
             ));
+            // fontawesome
+
+            wp_enqueue_style('cmcw-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
         }
+
     }
 
     public function cmcw_mini_cart_shortcode()
     {
         if (class_exists('WooCommerce') && isset(WC()->cart)) {
-            $svg = get_option(
-                'icon_name',
-                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM252 160c0 11 9 20 20 20l44 0 0 44c0 11 9 20 20 20s20-9 20-20l0-44 44 0c11 0 20-9 20-20s-9-20-20-20l-44 0 0-44c0-11-9-20-20-20s-20 9-20 20l0 44-44 0c-11 0-20 9-20 20z"/></svg>'
-            );
+            $icon_class = get_option('icon_name', 'fa-solid fa-cart-plus');
 
             $cart_count = WC()->cart->get_cart_contents_count();
             $style = '<style>
             .cmcw-shortcode-container {
             position: relative;
             display: inline-block;
-            height:' . get_option('icon_size') . 'px; width:' . get_option('icon_size', '20') . 'px; 
+            height: 20px;
+            width: 25px;
             margin:' . get_option('box_margin', '0') . 'px;
             }
             .cmcw-cart-count {
@@ -52,16 +54,18 @@ class Shortcode
             top: -5px;
             left: 0px;
             }
-            .cmcw-shortcode-container svg {
+            .cmcw-shortcode-container i {
             width: 100%;
             height: 100%;
-            fill: ' . get_option('icon_color', '##FF3A3A') . ';
+            font-size: ' . get_option('icon_size', '20') . 'px;
+            color: ' . get_option('icon_color', '##FF3A3A') . ';
             margin-bottom: -3px;
             }
             </style>';
 
-            $shortcode_html = '<div class="cmcw-shortcode-container">' . $style . $svg . '<span class="cmcw-cart-count">'
+            $shortcode_html = '<div class="cmcw-shortcode-container">' . $style . '<i class="' . esc_attr($icon_class) . '"></i>' . '<span class="cmcw-cart-count">'
                 . $cart_count . '</span></div>';
+            error_log('Icon Class: ' . get_option('icon_name', 'fas fa-cart-plus'));
 
             return $shortcode_html;
         } else {

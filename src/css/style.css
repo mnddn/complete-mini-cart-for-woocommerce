@@ -18,10 +18,9 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.cmcw-shortcode-container svg {
+.cmcw-shortcode-container i {
   width: 100%;
   height: 100%;
-  fill: #000000;
+  color: #000000;
   margin-bottom: -3px;
-  /* Set default color */
 }
