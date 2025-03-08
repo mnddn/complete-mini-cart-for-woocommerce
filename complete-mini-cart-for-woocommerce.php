@@ -3,8 +3,8 @@
 /*
  * Plugin Name:       Mini Cart for WooCommerce
  * Plugin URI:        https://example.com/plugins/the-basics/
- * Description:       This plugin adds a mini cart feature to your WooCommerce store. An Elementor Widget, a Block and a shortcode. All that you needed in one simple plugin.
- * Version:           1.0.1
+ * Description:       This plugin adds a mini cart feature to your WooCommerce store. An Elementor Widget and a shortcode. All that you needed in one simple plugin.
+ * Version:           1.0.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Moin Munna
@@ -48,7 +48,7 @@ class CMCW_Plugin
         $this->load_admin_submenu_page();
         $this->load_dependencies();
         add_action('plugins_loaded', [$this, 'init']);
-        add_filter('walker_nav_menu_start_el', [$this, 'enable_short_code_support'], 10, 2);
+        add_filter('walker_nav_menu_start_el', [$this, 'enable_short_code_support'], 10, 1);
     }
 
     /**
@@ -58,7 +58,7 @@ class CMCW_Plugin
     {
         define('CMCW_PATH', plugin_dir_path(__FILE__));
         define('CMCW_URL', plugin_dir_url(__FILE__));
-        define('CMCW_VERSION', '1.0.1');
+        define('CMCW_VERSION', '1.0.2');
     }
 
     /**
@@ -93,7 +93,7 @@ class CMCW_Plugin
         echo '<div class="notice notice-error"><p><strong>CMCW Plugin</strong> requires Elementor to be installed and activated.</p></div>';
     }
 
-    public function enable_short_code_support($item_output, $item)
+    public function enable_short_code_support($item_output)
     {
         return do_shortcode($item_output); // Process shortcode in menu item
     }

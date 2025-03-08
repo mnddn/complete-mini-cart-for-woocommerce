@@ -10,6 +10,7 @@ class Shortcode
     {
         add_action('wp_enqueue_scripts', array($this, 'cmcw_scripts'), 100);
         add_shortcode('cmcw_mini_cart', array($this, 'cmcw_mini_cart_shortcode'));
+
         add_action('wp_ajax_nopriv_cmcw_update_cart_count', array($this, 'cmcw_update_cart_count'));
         add_action('wp_ajax_cmcw_update_cart_count', array($this, 'cmcw_update_cart_count'));
     }
@@ -35,39 +36,36 @@ class Shortcode
 
     public function cmcw_mini_cart_shortcode()
     {
-        if (class_exists('WooCommerce') && isset(WC()->cart)) {
+        if (class_exists('WooCommerce')) {
             $icon_class = get_option('icon_name', 'fas fa-cart-plus');
 
-            $cart_count = WC()->cart->get_cart_contents_count();
+            $cart_count = esc_html(WC()->cart->get_cart_contents_count());
+
             $style = '<style>
-            .cmcw-shortcode-container 
-            {
-            position: relative;
-            display: inline-block;
-            height: 20px;
-            width: 25px;
-            margin:' . get_option('box_margin', '0') . 'px;
-            }
+                    .cmcw-shortcode-container {
+                        position: relative;
+                        display: inline-block;
+                        height: 20px;
+                        width: 25px;
+                        margin: ' . get_option('box_margin', '0') . 'px;
+                    }
 
-            .cmcw-cart-count 
-            {
-            background-color:' . get_option('count_bg_color', '#ff3a3a') . '; 
-            font-size:' . get_option('count_size', '10') . 'px;
-            color: ' . get_option('text_color', '#e8e8e8') . ';
-            top: -' . get_option('count_position', '5') . 'px;
-            left:' . get_option('count_position', '5') . 'px;
-            }
+                    .cmcw-cart-count {
+                        background-color: ' . get_option('count_bg_color', '#ff3a3a') . ';
+                        font-size: ' . get_option('count_size', '10') . 'px;
+                        color: ' . get_option('text_color', '#e8e8e8') . ';
+                        top: -' . get_option('count_position', '5') . 'px;
+                        left: ' . get_option('count_position', '5') . 'px;
+                    }
 
-            .cmcw-shortcode-container i 
-            {
-            width: 100%;
-            height: 100%;
-            font-size: ' . get_option('icon_size', '20') . 'px;
-            color: ' . get_option('icon_color', '#FF3A3A') . ';
-            margin-bottom: -3px;
-            }
-            
-            </style>';
+                    .cmcw-shortcode-container i {
+                        width: 100%;
+                        height: 100%;
+                        font-size: ' . get_option('icon_size', '20') . 'px;
+                        color: ' . get_option('icon_color', '#FF3A3A') . ';
+                        margin-bottom: -3px;
+                    }
+                    </style>';
 
             $shortcode_html = '<div class="cmcw-shortcode-container">' . $style . '<i class="' . esc_attr($icon_class) . '"></i>' . '<span class="cmcw-cart-count">'
                 . $cart_count . '</span></div>';
@@ -80,7 +78,12 @@ class Shortcode
 
     public function cmcw_update_cart_count()
     {
-        wp_send_json(array('count' => WC()->cart->get_cart_contents_count()));
+        if (!class_exists('WooCommerce') || !WC()->cart) {
+            wp_send_json_success(array('count' => 0));
+        }
+
+        $cart_count = WC()->cart->get_cart_contents_count();
+        wp_send_json(array('count' => $cart_count));
     }
 }
 
