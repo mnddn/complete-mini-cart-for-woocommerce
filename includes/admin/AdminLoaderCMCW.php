@@ -75,9 +75,6 @@ class AdminLoaderCMCW
 
     public function register_settings()
     {
-        if (!get_option('cmcw_settings')) {
-            add_option('cmcw_settings');
-        }
 
         register_setting('cmcw_options_group', 'icon_name', ['default' => 'fas fa-cart-plus']);
         register_setting('cmcw_options_group', 'count_bg_color', ['default' => '#ff3a3a']);

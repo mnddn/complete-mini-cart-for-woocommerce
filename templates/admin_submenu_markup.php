@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
     <p>Use this shortcode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> [cmcw_mini_cart] </strong></p>
     <form method="post" action="options.php">
         <?php
-        settings_fields('cmcw_settings');
+        settings_fields('cmcw_options_group');
         do_settings_sections('cmcw_shortcode');
         submit_button();
         ?>
