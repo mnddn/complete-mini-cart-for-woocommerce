@@ -76,14 +76,14 @@ class AdminLoaderCMCW
     public function register_settings()
     {
 
-        register_setting('cmcw_options_group', 'icon_name', ['default' => 'fas fa-cart-plus']);
-        register_setting('cmcw_options_group', 'count_bg_color', ['default' => '#ff3a3a']);
-        register_setting('cmcw_options_group', 'icon_color', ['default' => '#000000']);
-        register_setting('cmcw_options_group', 'text_color', ['default' => '#ffffff']);
-        register_setting('cmcw_options_group', 'icon_size', ['default' => '20']);
-        register_setting('cmcw_options_group', 'count_size', ['default' => '10']);
-        register_setting('cmcw_options_group', 'box_margin', ['default' => '0']);
-        register_setting('cmcw_options_group', 'count_position', ['default' => '5']);
+        register_setting('cmcw_options_group', 'icon_name');
+        register_setting('cmcw_options_group', 'count_bg_color');
+        register_setting('cmcw_options_group', 'icon_color');
+        register_setting('cmcw_options_group', 'text_color');
+        register_setting('cmcw_options_group', 'icon_size');
+        register_setting('cmcw_options_group', 'count_size');
+        register_setting('cmcw_options_group', 'box_margin', );
+        register_setting('cmcw_options_group', 'count_position');
 
         add_settings_section(
             'cmcw_settings_section',
@@ -114,7 +114,7 @@ class AdminLoaderCMCW
 
     public function icon_name_callback()
     {
-        $value = get_option('icon_name', 'fas fa-cart-plus');
+        $value = get_option('icon_name');
         ?>
         <input class="cmcw-icon-name" type="text" name="icon_name" value="<?php echo esc_attr($value) ?>" />
         <i class="<?php echo esc_attr($value) ?>"

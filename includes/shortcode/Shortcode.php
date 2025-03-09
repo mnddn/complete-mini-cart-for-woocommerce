@@ -37,7 +37,7 @@ class Shortcode
     public function cmcw_mini_cart_shortcode()
     {
         if (class_exists('WooCommerce')) {
-            $icon_class = get_option('icon_name', 'fas fa-cart-plus');
+            $icon_class = get_option('icon_name') != null ? get_option('icon_name') : 'fas fa-cart-plus';
 
             $cart_count = esc_html(WC()->cart->get_cart_contents_count());
 
