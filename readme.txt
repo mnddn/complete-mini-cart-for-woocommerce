@@ -14,7 +14,7 @@ Enhance your WooCommerce store with **Complete Mini Cart for WooCommerce** – a
 ✨ **Key Features:**
 - 🚀 **AJAX-Powered Mini Cart** – Update cart items instantly without page reloads.
 - 🛒 **Mini Cart as Menu Item** – Improve accessibility and boost conversions.
-- 📑 **Elementor Widget** – Improve accessibility and boost conversions.
+- 📑 **Elementor Widget** – Get a fully  customizable Elementor Widget.
 - 🎨 **Fully Customizable** – Modify colors, typography, and layout to match your theme.
 - 🔄 **Live Quantity** – Display real-time cart changes.
 - 📱 **Mobile-Friendly & Responsive** – Works perfectly on all devices.

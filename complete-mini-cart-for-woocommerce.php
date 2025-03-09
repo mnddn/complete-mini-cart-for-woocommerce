@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Plugin Name:       Mini Cart for WooCommerce
+ * Plugin Name:       Complete Mini Cart for WooCommerce
  * Plugin URI:        https://cmcw.mnddn.site/
  * Description:       This plugin adds a mini cart feature to your WooCommerce store. An Elementor Widget and a shortcode. All that you needed in one simple plugin.
  * Version:           1.0.0
@@ -11,7 +11,7 @@
  * Author URI:        https://portfolio.mnddn.site/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI:        https://example.com/my-plugin/
+ * Update URI:        https://github.com/mnddn
  * Text Domain:       cmcw
  * Requires Plugins:  woocommerce
  */
