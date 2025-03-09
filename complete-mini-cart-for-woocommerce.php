@@ -11,7 +11,6 @@
  * Author URI:        https://portfolio.mnddn.site/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI:        https://github.com/mnddn
  * Text Domain:       cmcw
  * Requires Plugins:  woocommerce
  */
