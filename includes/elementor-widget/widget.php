@@ -74,20 +74,6 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
     }
 
     /**
-     * Add style Dependencies.
-     *
-     * Retrieve the list of style handles the cmcw_mini_cart widget belongs to.
-     *
-     * @since 1.0.0
-     * @access public
-     * @return array Widget keywords.
-     */
-
-    public function get_style_depends(): array
-    {
-        return ['style-handle'];
-    }
-    /**
      * Get custom help URL.
      *
      * Retrieve a URL where the user can get more information about the widget.
@@ -98,7 +84,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
      */
     public function get_custom_help_url(): string
     {
-        return 'https://example.com/widget-name';
+        return 'https://cmcw.mnddn.site/';
     }
 
     /**
@@ -128,7 +114,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                 'label' => esc_html__('Icon', 'cmcw'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'fas fa-cart-plus',
+                    'value' => 'fa-cart-plus',
                     'library' => 'fa-solid',
                 ],
             ]
@@ -153,7 +139,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#000000',
                 'selectors' => [
-                    '{{WRAPPER}} .cmcw-widget-container svg' => 'fill: {{VALUE}}',
+                    '{{WRAPPER}} .cmcw-widget-container svg' => 'color: {{VALUE}}; fill: {{VALUE}};',
                 ],
             ]
         );

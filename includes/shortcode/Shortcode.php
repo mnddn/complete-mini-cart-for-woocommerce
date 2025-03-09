@@ -47,22 +47,22 @@ class Shortcode
                         display: inline-block;
                         height: 20px;
                         width: 25px;
-                        margin: ' . get_option('box_margin', '0') . 'px;
+                        margin: ' . get_option('box_margin') . 'px;
                     }
 
                     .cmcw-cart-count {
-                        background-color: ' . get_option('count_bg_color', '#ff3a3a') . ';
-                        font-size: ' . get_option('count_size', '10') . 'px;
-                        color: ' . get_option('text_color', '#e8e8e8') . ';
-                        top: -' . get_option('count_position', '5') . 'px;
-                        left: ' . get_option('count_position', '5') . 'px;
+                        background-color: ' . get_option('count_bg_color') . ';
+                        font-size: ' . get_option('count_size') . 'px;
+                        color: ' . get_option('text_color', ) . ';
+                        top: -' . get_option('count_position') . 'px;
+                        left: ' . get_option('count_position') . 'px;
                     }
 
                     .cmcw-shortcode-container i {
                         width: 100%;
                         height: 100%;
-                        font-size: ' . get_option('icon_size', '20') . 'px;
-                        color: ' . get_option('icon_color', '#FF3A3A') . ';
+                        font-size: ' . get_option('icon_size') . 'px;
+                        color: ' . get_option('icon_color') . ';
                         margin-bottom: -3px;
                     }
                     </style>';

@@ -117,7 +117,7 @@ class AdminLoaderCMCW
 
     public function icon_name_callback()
     {
-        $value = get_option('icon_name');
+        $value = get_option('icon_name', 'fas fa-cart-plus');
         ?>
         <input class="cmcw-icon-name" type="text" name="icon_name" value="<?php echo esc_attr($value) ?>" />
         <i class="<?php echo esc_attr($value) ?>"
@@ -127,42 +127,42 @@ class AdminLoaderCMCW
 
     public function count_bg_color_callback()
     {
-        $value = get_option('count_bg_color');
+        $value = get_option('count_bg_color', '#ff3a3a');
         echo '<input class="cmcw-count-bg-color" type="text" name="count_bg_color" value="' . esc_attr($value) . '" />';
     }
 
     public function text_color_callback()
     {
-        $value = get_option('text_color');
+        $value = get_option('text_color', '#e8e8e8');
         echo '<input class="cmcw-text-color" type="text" name="text_color" value="' . esc_attr($value) . '" />';
     }
 
     public function icon_color_callback()
     {
-        $value = get_option('icon_color');
+        $value = get_option('icon_color', '#e8e8e8');
         echo '<input class="cmcw-icon-color" type="text" name="icon_color" value="' . esc_attr($value) . '" />';
     }
 
     public function icon_size_callback()
     {
-        $value = get_option('icon_size');
+        $value = get_option('icon_size', '20');
         echo '<input type="number" name="icon_size" value="' . esc_attr($value) . '" />';
     }
 
     public function count_size_callback()
     {
-        $value = get_option('count_size');
+        $value = get_option('count_size', '10');
         echo '<input type="number" name="count_size" value="' . esc_attr($value) . '" />';
     }
     public function count_position_callback()
     {
-        $value = get_option('count_position');
+        $value = get_option('count_position', '5');
         echo '<input type="number" name="count_position" value="' . esc_attr($value) . '" />';
     }
 
     public function box_margin_callback()
     {
-        $value = get_option('box_margin');
+        $value = get_option('box_margin', '0');
         echo '<input type="number" name="box_margin" value="' . esc_attr($value) . '" />';
     }
 }
