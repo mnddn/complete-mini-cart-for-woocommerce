@@ -22,11 +22,15 @@ Enhance your WooCommerce store with **Complete Mini Cart for WooCommerce** – a
   
 💡 **Boost your WooCommerce store’s conversion rate with a user-friendly mini cart experience!**
 
+== Screenshots ==
+
 == Installation ==
 1. Upload the plugin folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the ‘Plugins’ menu in WordPress.
-3. Navigate to **WooCommerce → Mini Cart Settings** to configure options.
+3. Navigate to **WooCommerce → Mini Cart Settings** to configure Shortcode options.
+4. Search for **Mini Cart** in the Elementor Page Builder
 4. Enjoy an optimized cart experience on your store! 🚀
+
 
 == Frequently Asked Questions ==
 = Does this plugin work with all themes? =
@@ -35,18 +39,20 @@ Yes! **Complete Mini Cart for WooCommerce** is designed to work with any WooComm
 = Is this plugin compatible with AJAX-based checkout? =
 Absolutely! The mini cart updates dynamically without interfering with the checkout process.
 
-= Can I customize the appearance of the mini cart? =
-Yes! The plugin provides built-in customization options for styling, positioning, and animations.
+= Can I customize the appearance of the mini cart shortcode? =
+Yes! The plugin provides built-in customization options for styling and positioning the cart.
 
-== Screenshots ==
-1. **Floating Mini Cart** – A sleek and responsive cart on the side of your WooCommerce store.
-2. **Customization Panel** – Easy-to-use settings to modify colors, fonts, and layout.
-3. **Live Updates** – Cart updates instantly when products are added or removed.
+= Does it provide an actual Elementor Widget
+Yes! The plugin provides built-in support for one Elementor Widget for styling and positioning the cart. You can find it in Elementor Page Builder by seraching for 'Mini Cart'.
+
+= Can we make the icon and cart count box floating?
+Yes, you can. You can do it with the Elementor Editor easily. For the Shortcode you need to add some custom CSS.
 
 == Changelog ==
 = 1.0.0 =
 * Initial release with AJAX-powered mini cart.
-* Fully responsive floating and sticky cart design.
+* Fully responsive shortcode cart design.
+* Fully controllable Elementor Widget
 * Customizable styling and layout options.
 
 == Upgrade Notice ==
@@ -55,6 +61,3 @@ First version of **Complete Mini Cart for WooCommerce**.
 
 == Support ==
 Need help? Visit our [support forum](https://wordpress.org/support/plugin/complete-mini-cart-for-woocommerce/) or contact us via email.
-
-== Donate ==
-If you love this plugin, consider supporting us: [Your Donation Link]
