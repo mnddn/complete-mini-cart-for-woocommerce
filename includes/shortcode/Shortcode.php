@@ -54,8 +54,8 @@ class Shortcode
                         background-color: ' . get_option('count_bg_color') . ';
                         font-size: ' . get_option('count_size') . 'px;
                         color: ' . get_option('text_color', ) . ';
-                        top: -' . get_option('count_position') . 'px;
-                        left: ' . get_option('count_position') . 'px;
+                        top: -' . get_option('count_position', '5') . 'px;
+                        left: ' . get_option('count_position', '5') . 'px;
                     }
 
                     .cmcw-shortcode-container i {

@@ -1,13 +1,14 @@
 .cmcw-shortcode-container {
   position: relative;
   display: inline-block;
-  width: 25px; /* Adjust size as needed */
+  width: 25px;
   height: 25px;
   line-height: 0%;
 }
 
 .cmcw-cart-count {
   position: absolute;
+  font-size: 10px;
   font-weight: bold;
   width: 20px;
   height: 20px;
@@ -16,6 +17,8 @@
   border-radius: 50%;
   transform: translate(50%, -50%);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  top: -5px;
+  left: 5px;
 }
 
 .cmcw-shortcode-container i {
