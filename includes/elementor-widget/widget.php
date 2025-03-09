@@ -109,12 +109,12 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-            'icon',
+            'cmcw_icon',
             [
                 'label' => esc_html__('Icon', 'cmcw'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'fa-cart-plus',
+                    'value' => 'fa-solid fa-cart-plus',
                     'library' => 'fa-solid',
                 ],
             ]
@@ -210,7 +210,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                     'size' => 10,
                 ],
                 'range' => [
-                    'px' => ['min' => 10, 'max' => 100],
+                    'px' => ['min' => 1, 'max' => 100],
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .cmcw-cart-count-elementor' => 'font-size: {{SIZE}}{{UNIT}}',
@@ -229,7 +229,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                     'size' => 5,
                 ],
                 'range' => [
-                    'px' => ['min' => 0, 'max' => 50],
+                    'px' => ['min' => -20, 'max' => 50],
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .cmcw-cart-count-elementor' => 'top: -{{SIZE}}{{UNIT}};',
@@ -248,7 +248,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                     'size' => 5,
                 ],
                 'range' => [
-                    'px' => ['min' => 0, 'max' => 50],
+                    'px' => ['min' => -20, 'max' => 50],
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .cmcw-cart-count-elementor' => 'left: {{SIZE}}{{UNIT}}',
@@ -276,7 +276,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
             ?>
             <a href="<?php echo wc_get_cart_url(); ?>">
                 <div class="cmcw-widget-container">
-                    <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
+                    <?php \Elementor\Icons_Manager::render_icon($settings['cmcw_icon'], ['aria-hidden' => 'true']); ?>
                     <span class="cmcw-cart-count-elementor"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                 </div>
             </a>
@@ -285,7 +285,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
             ?>
             <a href="#"></a>
             <div class="cmcw-widget-container">
-                <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
+                <?php \Elementor\Icons_Manager::render_icon($settings['cmcw_icon'], ['aria-hidden' => 'true']); ?>
                 <span class="cmcw-cart-count-elementor">0</span>
             </div>
             </a>
