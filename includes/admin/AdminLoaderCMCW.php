@@ -29,7 +29,6 @@ class AdminLoaderCMCW
     {
         add_action('admin_enqueue_scripts', [$this, 'load_scripts'], 1000);
         $this->init();
-
     }
 
     /**
@@ -38,16 +37,15 @@ class AdminLoaderCMCW
     public function load_scripts()
     {
         // Load scripts
-        wp_enqueue_style('cmcw-admin-css', CMCW_URL . 'assets/css/admin.css', [], CMCW_VERSION);
-        wp_enqueue_script('cmcw-admin-js', CMCW_URL . 'assets/js/admin.js', ['jquery'], CMCW_VERSION, true);
+        wp_enqueue_style('cmcw-admin-css', CMCW_URL . '/src/css/admin.css', [], CMCW_VERSION);
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_script('cmcw-admin_js', CMCW_URL . '/src/js/admin.js', array('wp-color-picker'), CMCW_VERSION, true);
         // FontAwesome (for icons)
-        wp_enqueue_style('cmcw-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+        wp_enqueue_style('cmcw-fontawesome', CMCW_URL . '/src/css/fontawesome-all.min.css', [], CMCW_VERSION);
 
         // FontAwesome Icon Picker
-        wp_enqueue_style('cmcw-iconpicker-css', 'https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/css/fontawesome-iconpicker.min.css');
-        wp_enqueue_script('cmcw-iconpicker-js', 'https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/js/fontawesome-iconpicker.min.js', array('jquery'), null, true);
+        wp_enqueue_style('cmcw-iconpicker-css', CMCW_URL . '/src/css/fontawesome-iconpicker.min.css', ['cmcw-fontawesome'], CMCW_VERSION);
+        wp_enqueue_script('cmcw-iconpicker-js', CMCW_URL . '/src/js/fontawesome-iconpicker.min.js', array('jquery'), null, true);
 
     }
 
@@ -64,8 +62,8 @@ class AdminLoaderCMCW
     {
         add_submenu_page(
             'woocommerce',
-            esc_html__('Complete Mini Cart for Woocommerce', 'cmcw'),
-            esc_html__('Mini Cart', 'cmcw'),
+            esc_html__('Complete Mini Cart for Woocommerce', 'complete-mini-cart-for-woocommerce'),
+            esc_html__('Mini Cart', 'complete-mini-cart-for-woocommerce'),
             'manage_options',
             'cmcw_shortcode',
             [$this, 'submenu_section_template'],
@@ -73,17 +71,79 @@ class AdminLoaderCMCW
         );
     }
 
+    public static function sanitize_callback_text($input)
+    {
+        return sanitize_text_field($input); // (6) Sanitize the input properly
+    }
+
+    public function sanitize_icon_name($input)
+    {
+        return sanitize_text_field($input); // Ensures valid FontAwesome class names
+    }
+
+    public function sanitize_color($input)
+    {
+        return preg_match('/^#([A-Fa-f0-9]{3}){1,2}$/', $input) ? $input : ''; // Validate Hex Color
+    }
+
+    public function sanitize_number($input)
+    {
+        return intval($input); // Ensure only integers are stored
+    }
+
+
     public function register_settings()
     {
 
-        register_setting('cmcw_options_group', 'icon_name');
-        register_setting('cmcw_options_group', 'count_bg_color');
-        register_setting('cmcw_options_group', 'icon_color');
-        register_setting('cmcw_options_group', 'text_color');
-        register_setting('cmcw_options_group', 'icon_size');
-        register_setting('cmcw_options_group', 'count_size');
-        register_setting('cmcw_options_group', 'box_margin', );
-        register_setting('cmcw_options_group', 'count_position');
+        register_setting('cmcw_options_group', 'icon_name', array(
+            'type' => 'string',
+            'sanitize_callback' => array($this, 'sanitize_icon_name'),
+            'default' => ''
+        ));
+
+        register_setting('cmcw_options_group', 'count_bg_color', array(
+            'type' => 'string',
+            'sanitize_callback' => array($this, 'sanitize_color'),
+            'default' => '#ff3a3a'
+        ));
+
+        register_setting('cmcw_options_group', 'icon_color', array(
+            'type' => 'string',
+            'sanitize_callback' => array($this, 'sanitize_color'),
+            'default' => '#e8e8e8'
+        ));
+
+        register_setting('cmcw_options_group', 'text_color', array(
+            'type' => 'string',
+            'sanitize_callback' => array($this, 'sanitize_color'),
+            'default' => '#e8e8e8'
+        ));
+
+        register_setting('cmcw_options_group', 'icon_size', array(
+            'type' => 'integer',
+            'sanitize_callback' => array($this, 'sanitize_number'),
+            'default' => 20
+        ));
+
+        register_setting('cmcw_options_group', 'count_size', array(
+            'type' => 'integer',
+            'sanitize_callback' => array($this, 'sanitize_number'),
+            'default' => 10
+        ));
+
+        register_setting('cmcw_options_group', 'box_margin', array(
+            'type' => 'integer',
+            'sanitize_callback' => array($this, 'sanitize_number'),
+            'default' => 0
+        ));
+
+        register_setting('cmcw_options_group', 'count_position', array(
+            'type' => 'integer',
+            'sanitize_callback' => array($this, 'sanitize_number'),
+            'default' => 5
+        ));
+
+        // Adding Settings section
 
         add_settings_section(
             'cmcw_settings_section',

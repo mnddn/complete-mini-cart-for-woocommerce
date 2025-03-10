@@ -29,7 +29,7 @@ class Shortcode
             ));
             // fontawesome
 
-            wp_enqueue_style('cmcw-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+            wp_enqueue_style('cmcw-font-awesome', CMCW_URL . '/src/css/fontawesome-all.min.css', array(), CMCW_VERSION, 'all');
         }
 
     }

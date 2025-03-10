@@ -29,6 +29,5 @@ class Cmcw_Widget_Loader
     public function cmcw_register_scripts()
     {
         wp_enqueue_style('cmcw-elementor-widget-css', CMCW_URL . '/src/css/elementor-widget.css', [], CMCW_VERSION);
-        // wp_enqueue_script('cmcw-widget-js', CMCW_URL . 'assets/js/widget.js', ['jquery'], CMCW_VERSION, true);
     }
 }

@@ -11,7 +11,7 @@
  * Author URI:        https://portfolio.mnddn.site/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       cmcw
+ * Text Domain:       complete-mini-cart-for-woocommerce
  * Requires Plugins:  woocommerce
  */
 
@@ -44,8 +44,8 @@ class CMCW_Plugin
     private function __construct()
     {
         $this->define_constants();
-        $this->load_admin_submenu_page();
         $this->load_dependencies();
+        $this->load_admin_submenu_page();
         add_action('plugins_loaded', [$this, 'init']);
         add_filter('walker_nav_menu_start_el', [$this, 'enable_short_code_support'], 10, 1);
     }

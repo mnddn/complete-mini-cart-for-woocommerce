@@ -31,7 +31,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
      */
     public function get_title(): string
     {
-        return esc_html__('Ajax Mini Cart', 'cmcw');
+        return esc_html__('Ajax Mini Cart', 'complete-mini-cart-for-woocommerce');
     }
     /**
      * Get widget icon.
@@ -103,7 +103,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Icon', 'cmcw'),
+                'label' => esc_html__('Icon', 'complete-mini-cart-for-woocommerce'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -111,7 +111,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->add_control(
             'cmcw_icon',
             [
-                'label' => esc_html__('Icon', 'cmcw'),
+                'label' => esc_html__('Icon', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fa-solid fa-cart-plus',
@@ -127,7 +127,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->start_controls_section(
             'section_icon_style',
             [
-                'label' => esc_html__('Icon Style', 'cmcw'),
+                'label' => esc_html__('Icon Style', 'complete-mini-cart-for-woocommerce'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -135,7 +135,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->add_control(
             'color',
             [
-                'label' => esc_html__('Color', 'cmcw'),
+                'label' => esc_html__('Color', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#000000',
                 'selectors' => [
@@ -147,7 +147,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->add_control(
             'size',
             [
-                'label' => esc_html__('Size', 'cmcw'),
+                'label' => esc_html__('Size', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'default' => [
@@ -170,7 +170,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->start_controls_section(
             'section_count_style',
             [
-                'label' => esc_html__('Cart Count Style', 'cmcw'),
+                'label' => esc_html__('Cart Count Style', 'complete-mini-cart-for-woocommerce'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -178,7 +178,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->add_control(
             'count_bg_color',
             [
-                'label' => esc_html__('Background Color', 'cmcw'),
+                'label' => esc_html__('Background Color', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ff3a3a',
                 'selectors' => [
@@ -190,7 +190,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->add_control(
             'count_text_color',
             [
-                'label' => esc_html__('Text Color', 'cmcw'),
+                'label' => esc_html__('Text Color', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
@@ -202,7 +202,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->add_control(
             'count_size',
             [
-                'label' => esc_html__('Font Size', 'cmcw'),
+                'label' => esc_html__('Font Size', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'default' => [
@@ -221,7 +221,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->add_control(
             'count_top_position',
             [
-                'label' => esc_html__('Position From Top', 'cmcw'),
+                'label' => esc_html__('Position From Top', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'default' => [
@@ -240,7 +240,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         $this->add_control(
             'count_left_position',
             [
-                'label' => esc_html__('Position From Left', 'cmcw'),
+                'label' => esc_html__('Position From Left', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'default' => [
@@ -274,10 +274,10 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
 
         if (class_exists('WooCommerce') && isset(WC()->cart)) {
             ?>
-            <a href="<?php echo wc_get_cart_url(); ?>">
+            <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
                 <div class="cmcw-widget-container">
                     <?php \Elementor\Icons_Manager::render_icon($settings['cmcw_icon'], ['aria-hidden' => 'true']); ?>
-                    <span class="cmcw-cart-count-elementor"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                    <span class="cmcw-cart-count-elementor"><?php echo esc_html(WC()->cart->get_cart_contents_count()); ?></span>
                 </div>
             </a>
             <?php
