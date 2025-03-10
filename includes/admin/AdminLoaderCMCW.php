@@ -81,17 +81,6 @@ class AdminLoaderCMCW
         return sanitize_text_field($input); // Ensures valid FontAwesome class names
     }
 
-    public function sanitize_color($input)
-    {
-        return preg_match('/^#([A-Fa-f0-9]{3}){1,2}$/', $input) ? $input : ''; // Validate Hex Color
-    }
-
-    public function sanitize_number($input)
-    {
-        return intval($input); // Ensure only integers are stored
-    }
-
-
     public function register_settings()
     {
 
@@ -103,43 +92,43 @@ class AdminLoaderCMCW
 
         register_setting('cmcw_options_group', 'count_bg_color', array(
             'type' => 'string',
-            'sanitize_callback' => array($this, 'sanitize_color'),
+            'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '#ff3a3a'
         ));
 
         register_setting('cmcw_options_group', 'icon_color', array(
             'type' => 'string',
-            'sanitize_callback' => array($this, 'sanitize_color'),
+            'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '#e8e8e8'
         ));
 
         register_setting('cmcw_options_group', 'text_color', array(
             'type' => 'string',
-            'sanitize_callback' => array($this, 'sanitize_color'),
+            'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '#e8e8e8'
         ));
 
         register_setting('cmcw_options_group', 'icon_size', array(
             'type' => 'integer',
-            'sanitize_callback' => array($this, 'sanitize_number'),
-            'default' => 20
+            'sanitize_callback' => array($this, 'sanitize_callback_text'),
+            'default' => '20'
         ));
 
         register_setting('cmcw_options_group', 'count_size', array(
             'type' => 'integer',
-            'sanitize_callback' => array($this, 'sanitize_number'),
-            'default' => 10
+            'sanitize_callback' => array($this, 'sanitize_callback_text'),
+            'default' => '10'
         ));
 
         register_setting('cmcw_options_group', 'box_margin', array(
             'type' => 'integer',
-            'sanitize_callback' => array($this, 'sanitize_number'),
-            'default' => 0
+            'sanitize_callback' => array($this, 'sanitize_callback_text'),
+            'default' => '0'
         ));
 
         register_setting('cmcw_options_group', 'count_position', array(
             'type' => 'integer',
-            'sanitize_callback' => array($this, 'sanitize_number'),
+            'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => 5
         ));
 
