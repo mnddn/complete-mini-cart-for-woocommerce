@@ -5,8 +5,11 @@ Requires at least: 6.0
 Tested up to: 6.7.2
 Requires PHP: 7.4
 Stable tag: 1.0.0
+Short Description: A powerful, lightweight, and fully customizable mini cart plugin to improve user experience with an AJAX-powered cart and real-time updates.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+A powerful, lightweight, and fully customizable mini cart plugin to improve user experience with an AJAX-powered cart and real-time updates.
 
 == Description ==
 Enhance your WooCommerce store with **Complete Mini Cart for WooCommerce** – a powerful, lightweight, and fully customizable mini cart plugin. Improve user experience with an AJAX-powered cart and real-time updates.
