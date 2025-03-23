@@ -2,7 +2,7 @@
 Contributors: moinuddinmunna
 Tags: woocommerce mini cart, ajax cart, floating cart, woocommerce cart, sticky cart
 Requires at least: 6.0
-Tested up to: 6.7.2
+Tested up to: 6.7
 Requires PHP: 7.4
 Stable tag: 1.0.0
 Short Description: A powerful, lightweight, and fully customizable mini cart plugin to improve user experience with an AJAX-powered cart and real-time updates.
@@ -64,3 +64,7 @@ First version of **Complete Mini Cart for WooCommerce**.
 
 == Support ==
 Need help? Visit our [support forum](https://wordpress.org/support/plugin/complete-mini-cart-for-woocommerce/) or contact us via email.
+
+== Source Code ==
+* This plugin includes FontAwesome Icon Picker. The original source code can be found at: https://github.com/itsjavi/fontawesome-iconpicker
+* Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com

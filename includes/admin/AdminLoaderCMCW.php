@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class AdminLoaderCMCW
+class CMCW_AdminLoader
 {
     /**
      * Singleton instance
@@ -84,49 +84,49 @@ class AdminLoaderCMCW
     public function register_settings()
     {
 
-        register_setting('cmcw_options_group', 'icon_name', array(
+        register_setting('cmcw_options_group', 'cmcw_icon_name', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_icon_name'),
             'default' => ''
         ));
 
-        register_setting('cmcw_options_group', 'count_bg_color', array(
+        register_setting('cmcw_options_group', 'cmcw_count_bg_color', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '#ff3a3a'
         ));
 
-        register_setting('cmcw_options_group', 'icon_color', array(
+        register_setting('cmcw_options_group', 'cmcw_icon_color', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '#e8e8e8'
         ));
 
-        register_setting('cmcw_options_group', 'text_color', array(
+        register_setting('cmcw_options_group', 'cmcw_text_color', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '#e8e8e8'
         ));
 
-        register_setting('cmcw_options_group', 'icon_size', array(
+        register_setting('cmcw_options_group', 'cmcw_icon_size', array(
             'type' => 'integer',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '20'
         ));
 
-        register_setting('cmcw_options_group', 'count_size', array(
+        register_setting('cmcw_options_group', 'cmcw_count_size', array(
             'type' => 'integer',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '10'
         ));
 
-        register_setting('cmcw_options_group', 'box_margin', array(
+        register_setting('cmcw_options_group', 'cmcw_box_margin', array(
             'type' => 'integer',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => '0'
         ));
 
-        register_setting('cmcw_options_group', 'count_position', array(
+        register_setting('cmcw_options_group', 'cmcw_count_position', array(
             'type' => 'integer',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
             'default' => 5
@@ -141,14 +141,14 @@ class AdminLoaderCMCW
             'cmcw_shortcode'
         );
 
-        add_settings_field('icon_name', 'Icon Name', [$this, 'icon_name_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
-        add_settings_field('count_bg_color', 'Cart Count BG Color', [$this, 'count_bg_color_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
-        add_settings_field('text_color', 'Cart Count Text Color', [$this, 'text_color_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
-        add_settings_field('icon_color', 'Icon Color', [$this, 'icon_color_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
-        add_settings_field('icon_size', 'Icon Size', [$this, 'icon_size_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
-        add_settings_field('count_size', 'Cart Count Size', [$this, 'count_size_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
-        add_settings_field('count_position', 'Cart Count Position', [$this, 'count_position_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
-        add_settings_field('box_margin', 'Box Margin', [$this, 'box_margin_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('cmcw_icon_name', 'Icon Name', [$this, 'icon_name_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('cmcw_count_bg_color', 'Cart Count BG Color', [$this, 'count_bg_color_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('cmcw_text_color', 'Cart Count Text Color', [$this, 'text_color_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('cmcw_icon_color', 'Icon Color', [$this, 'icon_color_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('cmcw_icon_size', 'Icon Size', [$this, 'icon_size_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('cmcw_count_size', 'Cart Count Size', [$this, 'count_size_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('cmcw_count_position', 'Cart Count Position', [$this, 'count_position_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
+        add_settings_field('cmcw_box_margin', 'Box Margin', [$this, 'box_margin_callback'], 'cmcw_shortcode', 'cmcw_settings_section');
     }
 
     public function submenu_section_template()
@@ -163,9 +163,9 @@ class AdminLoaderCMCW
 
     public function icon_name_callback()
     {
-        $value = get_option('icon_name');
+        $value = get_option('cmcw_icon_name');
         ?>
-        <input class="cmcw-icon-name" type="text" name="icon_name" value="<?php echo esc_attr($value) ?>" />
+        <input class="cmcw-icon-name" type="text" name="cmcw_icon_name" value="<?php echo esc_attr($value) ?>" />
         <i class="<?php echo esc_attr($value) ?>"
             title="Enter the icon name from Font Awesome. For example, 'fas fa-shopping-cart'"></i>
         <?php
@@ -173,44 +173,44 @@ class AdminLoaderCMCW
 
     public function count_bg_color_callback()
     {
-        $value = get_option('count_bg_color', '#ff3a3a');
-        echo '<input class="cmcw-count-bg-color" type="text" name="count_bg_color" value="' . esc_attr($value) . '" />';
+        $value = get_option('cmcw_count_bg_color', '#ff3a3a');
+        echo '<input class="cmcw-count-bg-color" type="text" name="cmcw_count_bg_color" value="' . esc_attr($value) . '" />';
     }
 
     public function text_color_callback()
     {
-        $value = get_option('text_color', '#e8e8e8');
-        echo '<input class="cmcw-text-color" type="text" name="text_color" value="' . esc_attr($value) . '" />';
+        $value = get_option('cmcw_text_color', '#e8e8e8');
+        echo '<input class="cmcw-text-color" type="text" name="cmcw_text_color" value="' . esc_attr($value) . '" />';
     }
 
     public function icon_color_callback()
     {
-        $value = get_option('icon_color', '#e8e8e8');
-        echo '<input class="cmcw-icon-color" type="text" name="icon_color" value="' . esc_attr($value) . '" />';
+        $value = get_option('cmcw_icon_color', '#e8e8e8');
+        echo '<input class="cmcw-icon-color" type="text" name="cmcw_icon_color" value="' . esc_attr($value) . '" />';
     }
 
     public function icon_size_callback()
     {
-        $value = get_option('icon_size', '20');
-        echo '<input type="number" name="icon_size" value="' . esc_attr($value) . '" />';
+        $value = get_option('cmcw_icon_size', '20');
+        echo '<input type="number" name="cmcw_icon_size" value="' . esc_attr($value) . '" />';
     }
 
     public function count_size_callback()
     {
-        $value = get_option('count_size', '10');
-        echo '<input type="number" name="count_size" value="' . esc_attr($value) . '" />';
+        $value = get_option('cmcw_count_size', '10');
+        echo '<input type="number" name="cmcw_count_size" value="' . esc_attr($value) . '" />';
     }
     public function count_position_callback()
     {
-        $value = get_option('count_position', '5');
-        echo '<input type="number" name="count_position" value="' . esc_attr($value) . '" />';
+        $value = get_option('cmcw_count_position', '5');
+        echo '<input type="number" name="cmcw_count_position" value="' . esc_attr($value) . '" />';
     }
 
     public function box_margin_callback()
     {
-        $value = get_option('box_margin', '0');
-        echo '<input type="number" name="box_margin" value="' . esc_attr($value) . '" />';
+        $value = get_option('cmcw_box_margin', '0');
+        echo '<input type="number" name="cmcw_box_margin" value="' . esc_attr($value) . '" />';
     }
 }
 
-AdminLoaderCMCW::get_instance();
+CMCW_AdminLoader::get_instance();
