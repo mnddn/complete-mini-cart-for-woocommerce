@@ -39,10 +39,10 @@ class CMCW_Shortcode
 
     public function cmcw_get_inline_shortcode_css()
     {
-        $margin = get_option('cmcw_box_margin', '0') !== '' ? get_option('cmcw_box_margin') : '0';
+        $margin = get_option('cmcw_box_margin') !== '' ? get_option('cmcw_box_margin', '0') : '0';
         $count_font_size = get_option('cmcw_count_size') !== '' ? get_option('cmcw_count_size') : '10';
         $count_position = get_option('cmcw_count_position') !== '' ? get_option('cmcw_count_position') : '5';
-        $icon_font_size = get_option('cmcw_icon_size', '20') !== '' ? get_option('cmcw_icon_size') : '20';
+        $icon_font_size = get_option('cmcw_icon_size') !== '' ? get_option('cmcw_icon_size', '20') : '20';
         $count_bg_color = get_option('cmcw_count_bg_color') !== '' ? get_option('cmcw_count_bg_color') : '#dd9933';
         $count_text_color = get_option('cmcw_text_color') !== '' ? get_option('cmcw_text_color') : '#ffffff';
         $count_icon_color = get_option('cmcw_icon_color') !== '' ? get_option('cmcw_icon_color') : '#000000';
