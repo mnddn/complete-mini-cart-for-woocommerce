@@ -37,6 +37,7 @@ class CMCW_AdminLoader
     public function load_scripts()
     {
         // Load scripts
+        wp_enqueue_style('cmcw-admin-css', CMCW_URL . '/src/css/admin.css', [], CMCW_VERSION);
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_script('cmcw-admin_js', CMCW_URL . '/src/js/admin.js', array('wp-color-picker'), CMCW_VERSION, true);
         // FontAwesome (for icons)
@@ -53,6 +54,8 @@ class CMCW_AdminLoader
      */
     public function init()
     {
+        // Add options
+        $this->cmcw_add_options();
         // Add Submenu Under Woocommerce Settings
         add_action('admin_menu', [$this, 'cmcw_register_submenu'], 1000);
         add_action('admin_init', [$this, 'register_settings']);
@@ -80,55 +83,59 @@ class CMCW_AdminLoader
         return sanitize_text_field($input); // Ensures valid FontAwesome class names
     }
 
+    public function cmcw_add_options()
+    {
+        add_option('cmcw_box_margin', '0');
+        add_option('cmcw_count_size', '10');
+        add_option('cmcw_count_position', '5');
+        add_option('cmcw_icon_size', '20');
+        add_option('cmcw_count_bg_color', '#dd9933');
+        add_option('cmcw_text_color', '#ffffff');
+        add_option('cmcw_icon_color', '#000000');
+        add_option('cmcw_icon_name', 'fas fa-cart-plus');
+    }
+
     public function register_settings()
     {
 
         register_setting('cmcw_options_group', 'cmcw_icon_name', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_icon_name'),
-            'default' => 'fas fa-cart-plus'
         ));
 
         register_setting('cmcw_options_group', 'cmcw_count_bg_color', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
-            'default' => '#ff3a3a'
         ));
 
         register_setting('cmcw_options_group', 'cmcw_icon_color', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
-            'default' => '#e8e8e8'
         ));
 
         register_setting('cmcw_options_group', 'cmcw_text_color', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
-            'default' => '#e8e8e8'
         ));
 
         register_setting('cmcw_options_group', 'cmcw_icon_size', array(
             'type' => 'integer',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
-            'default' => '20'
         ));
 
         register_setting('cmcw_options_group', 'cmcw_count_size', array(
             'type' => 'integer',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
-            'default' => '10'
         ));
 
         register_setting('cmcw_options_group', 'cmcw_box_margin', array(
             'type' => 'integer',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
-            'default' => '0'
         ));
 
         register_setting('cmcw_options_group', 'cmcw_count_position', array(
             'type' => 'integer',
             'sanitize_callback' => array($this, 'sanitize_callback_text'),
-            'default' => 5
         ));
 
         // Adding Settings section
