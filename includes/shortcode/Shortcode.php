@@ -44,22 +44,22 @@ class CMCW_Shortcode
                         display: inline-block;
                         height: 20px;
                         width: 25px;
-                        margin: ' . get_option('cmcw_box_margin') . 'px;
+                        margin: ' . absint(get_option('cmcw_box_margin')) . 'px;
                     }
 
                     .cmcw-cart-count {
-                        background-color: ' . get_option('cmcw_count_bg_color') . ';
-                        font-size: ' . get_option('cmcw_count_size') . 'px;
-                        color: ' . get_option('cmcw_text_color', ) . ';
-                        top: -' . get_option('cmcw_count_position', '5') . 'px;
-                        left: ' . get_option('cmcw_count_position', '5') . 'px;
+                        background-color: ' . esc_attr(get_option('cmcw_count_bg_color')) . ';
+                        font-size: ' . absint(get_option('cmcw_count_size')) . 'px;
+                        color: ' . esc_attr(get_option('cmcw_text_color')) . ';
+                        top: -' . absint(get_option('cmcw_count_position', '5')) . 'px;
+                        left: ' . absint(get_option('cmcw_count_position', '5')) . 'px;
                     }
 
                     .cmcw-shortcode-container i {
                         width: 100%;
                         height: 100%;
-                        font-size: ' . get_option('cmcw_icon_size') . 'px;
-                        color: ' . get_option('cmcw_icon_color') . ';
+                        font-size: ' . absint(get_option('cmcw_icon_size')) . 'px;
+                        color: ' . esc_attr(get_option('cmcw_icon_color')) . ';
                         margin-bottom: -3px;
                     }';
 
@@ -69,7 +69,7 @@ class CMCW_Shortcode
     public function cmcw_mini_cart_shortcode()
     {
         if (class_exists('WooCommerce')) {
-            $icon_class = get_option('icon_name') != null ? get_option('cmcw_icon_name') : 'fas fa-cart-plus';
+            $icon_class = (get_option('icon_name')) != null ? get_option('cmcw_icon_name') : 'fas fa-cart-plus';
 
             $cart_count = esc_html(WC()->cart->get_cart_contents_count());
 

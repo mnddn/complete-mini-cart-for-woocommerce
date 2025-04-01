@@ -37,7 +37,6 @@ class CMCW_AdminLoader
     public function load_scripts()
     {
         // Load scripts
-        wp_enqueue_style('cmcw-admin-css', CMCW_URL . '/src/css/admin.css', [], CMCW_VERSION);
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_script('cmcw-admin_js', CMCW_URL . '/src/js/admin.js', array('wp-color-picker'), CMCW_VERSION, true);
         // FontAwesome (for icons)
