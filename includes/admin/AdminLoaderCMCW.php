@@ -86,7 +86,7 @@ class CMCW_AdminLoader
         register_setting('cmcw_options_group', 'cmcw_icon_name', array(
             'type' => 'string',
             'sanitize_callback' => array($this, 'sanitize_icon_name'),
-            'default' => ''
+            'default' => 'fas fa-cart-plus'
         ));
 
         register_setting('cmcw_options_group', 'cmcw_count_bg_color', array(

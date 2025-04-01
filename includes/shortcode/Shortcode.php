@@ -39,27 +39,37 @@ class CMCW_Shortcode
 
     public function cmcw_get_inline_shortcode_css()
     {
+        $margin = get_option('cmcw_box_margin') !== '' ? get_option('cmcw_box_margin') : '0';
+        $count_font_size = get_option('cmcw_count_size') !== '' ? get_option('cmcw_count_size') : '10';
+        $count_position = get_option('cmcw_count_position') !== '' ? get_option('cmcw_count_position') : '5';
+        $icon_font_size = get_option('cmcw_icon_size') !== '' ? get_option('cmcw_icon_size') : '20';
+        $count_bg_color = get_option('cmcw_count_bg_color') !== '' ? get_option('cmcw_count_bg_color') : '#dd9933';
+        $count_text_color = get_option('cmcw_text_color') !== '' ? get_option('cmcw_text_color') : '#ffffff';
+        $count_icon_color = get_option('cmcw_icon_color') !== '' ? get_option('cmcw_icon_color') : '#000000';
+
+
+
         $style = '.cmcw-shortcode-container {
                         position: relative;
                         display: inline-block;
                         height: 20px;
                         width: 25px;
-                        margin: ' . absint(get_option('cmcw_box_margin')) . 'px;
+                        margin: ' . absint($margin) . 'px;
                     }
 
                     .cmcw-cart-count {
-                        background-color: ' . esc_attr(get_option('cmcw_count_bg_color')) . ';
-                        font-size: ' . absint(get_option('cmcw_count_size')) . 'px;
-                        color: ' . esc_attr(get_option('cmcw_text_color')) . ';
-                        top: -' . absint(get_option('cmcw_count_position', '5')) . 'px;
-                        left: ' . absint(get_option('cmcw_count_position', '5')) . 'px;
+                        background-color: ' . esc_attr($count_bg_color) . ';
+                        font-size: ' . absint($count_font_size) . 'px;
+                        color: ' . esc_attr($count_text_color) . ';
+                        top: -' . absint($count_position) . 'px;
+                        left: ' . absint($count_position) . 'px;
                     }
 
                     .cmcw-shortcode-container i {
                         width: 100%;
                         height: 100%;
-                        font-size: ' . absint(get_option('cmcw_icon_size')) . 'px;
-                        color: ' . esc_attr(get_option('cmcw_icon_color')) . ';
+                        font-size: ' . absint($icon_font_size) . 'px;
+                        color: ' . esc_attr($count_icon_color) . ';
                         margin-bottom: -3px;
                     }';
 
@@ -69,7 +79,7 @@ class CMCW_Shortcode
     public function cmcw_mini_cart_shortcode()
     {
         if (class_exists('WooCommerce')) {
-            $icon_class = (get_option('icon_name')) != null ? get_option('cmcw_icon_name') : 'fas fa-cart-plus';
+            $icon_class = get_option('cmcw_icon_name') !== '' ? get_option('cmcw_icon_name') : 'fas fa-cart-plus';
 
             $cart_count = esc_html(WC()->cart->get_cart_contents_count());
 
