@@ -45,7 +45,7 @@ class CMCW_Shortcode
         $icon_font_size = get_option(option: 'cmcw_icon_size') !== '' ? get_option('cmcw_icon_size') : '20';
         $count_bg_color = get_option('cmcw_count_bg_color') !== '' ? get_option('cmcw_count_bg_color') : '#dd9933';
         $count_text_color = get_option('cmcw_text_color') !== '' ? get_option('cmcw_text_color') : '#ffffff';
-        $count_icon_color = get_option('cmcw_icon_color') !== '' ? get_option('cmcw_icon_color') : '#000000';
+        $count_icon_color = get_option('cmcw_icon_color') !== '' ? get_option('cmcw_icon_color') : '#000000'; // Need to change the name
 
 
 
