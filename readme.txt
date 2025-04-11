@@ -4,7 +4,7 @@ Tags: Complete Mini Cart for WooCommerce, mini cart, woocommerce mini cart, ajax
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 Short Description: A powerful, lightweight, and fully customizable mini cart plugin to improve user experience with an AJAX-powered cart and real-time updates.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -67,6 +67,9 @@ Yes, you can. You can do it with the Elementor Editor easily. For the Shortcode 
 = 1.0.3 =
 * readme fix
 
+= 1.0.4 =
+* Elementor Widget Bug Fixed
+
 == Upgrade Notice ==
 = 1.0.0 =
 First version of **Complete Mini Cart for WooCommerce**.
@@ -80,9 +83,12 @@ Third version of **Complete Mini Cart for WooCommerce**.
 = 1.0.3 =
 Fourth version of **Complete Mini Cart for WooCommerce**.
 
+= 1.0.4 =
+Fifth version of **Complete Mini Cart for WooCommerce**.
+
 
 == Support ==
-Need help? Visit our [support forum](https://wordpress.org/support/plugin/complete-mini-cart-for-woocommerce/) or contact us via email.
+Need help? Visit our [support forum](https://cmcw.mnddn.site/support/).
 
 == Source Code ==
 * This plugin includes FontAwesome Icon Picker. The original source code can be found at: https://github.com/itsjavi/fontawesome-iconpicker
