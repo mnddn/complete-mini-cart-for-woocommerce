@@ -75,7 +75,7 @@ class CMCW_Plugin
     public function init()
     {
         // Check if Elementor is active
-        if (!did_action('elementor/loaded')) {
+        if (did_action('elementor/loaded')) {
             // Load Elementor Widget
             require_once CMCW_PATH . 'includes/elementor-widget/widget-loader.php';
             new Cmcw_Widget_Loader();
