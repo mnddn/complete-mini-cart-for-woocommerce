@@ -20,4 +20,32 @@ jQuery(document).ready(function ($) {
 
   // Initial load update
   cmcwUpdateCartCount();
+
+  // Sidebar toggle
+
+  $(".cmcw-shortcode-container").on("mouseenter", function () {
+    $("#cmcw-cart-sidebar").addClass("cmcw-opened");
+    // loadCartContents();
+  });
+
+  $("#cmcw-cart-close").on("click", function () {
+    $("#cmcw-cart-sidebar").removeClass("cmcw-opened");
+  });
+
+  // Disable link when inside the cart sidebar
+  const CmcwSidebar = document.getElementById("cmcw-cart-sidebar");
+  const CmcwParentLink = CmcwSidebar.closest("a"); // Get the nearest parent <a>
+
+  if (CmcwParentLink) {
+    CmcwSidebar.addEventListener("mouseenter", function () {
+      CmcwParentLink.dataset.href = CmcwParentLink.getAttribute("href"); // store the href
+      CmcwParentLink.removeAttribute("href"); // disable it
+    });
+
+    CmcwSidebar.addEventListener("mouseleave", function () {
+      CmcwParentLink.setAttribute("href", CmcwParentLink.dataset.href); // restore href
+      delete CmcwParentLink.dataset.href;
+      $("#cmcw-cart-sidebar").removeClass("cmcw-opened"); // close the sidebar
+    });
+  }
 });

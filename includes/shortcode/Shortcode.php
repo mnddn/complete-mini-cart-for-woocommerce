@@ -86,7 +86,10 @@ class CMCW_Shortcode
             $shortcode_html = '<div class="cmcw-shortcode-container"><i class="' . esc_attr(text: $icon_class) . '"></i>' . '<span class="cmcw-cart-count">'
                 . $cart_count . '</span></div>';
 
-            return $shortcode_html;
+            $filtered_html = apply_filters('cmcw_html_loaded', $shortcode_html);
+
+            return $filtered_html;
+
         } else {
             return '<span class="cmcw-cart-count">0</span>'; // Default if cart is unavailable
         }

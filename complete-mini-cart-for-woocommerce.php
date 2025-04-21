@@ -82,6 +82,8 @@ class CMCW_Plugin
         }
 
         add_filter('plugin_action_links_' . plugin_basename(__FILE__), [$this, 'cmcw_add_plugin_action_links']);
+
+        require_once CMCW_PATH . 'includes/sidebar/Sidebar.php';
     }
 
     function cmcw_add_plugin_action_links($links)
