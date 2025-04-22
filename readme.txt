@@ -4,7 +4,7 @@ Tags: Complete Mini Cart for WooCommerce, mini cart, woocommerce mini cart, ajax
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 Short Description: A powerful, lightweight, and fully customizable mini cart plugin to improve user experience with an AJAX-powered cart and real-time updates.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -77,8 +77,11 @@ Yes, you can. You can do it with the Elementor Editor easily. For the Shortcode 
 = 2.0.0 =
 **Major release** (22/04/2025)
 
-*Added: Sidecart feature for the shortcode and Elementor Widget
-*Improved: Compatibility with woocommerce
+* Added: Sidecart feature for the shortcode and Elementor Widget
+* Improved: Compatibility with woocommerce
+
+= 2.0.1 =
+* Minor bug fix
 
 == Upgrade Notice ==
 = 1.0.0 =
