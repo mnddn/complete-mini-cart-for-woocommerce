@@ -42,7 +42,7 @@ class CMCW_Shortcode
         $margin = get_option('cmcw_box_margin') !== '' ? get_option('cmcw_box_margin') : '0';
         $count_font_size = get_option('cmcw_count_size') !== '' ? get_option('cmcw_count_size') : '10';
         $count_position = get_option('cmcw_count_position') !== '' ? get_option('cmcw_count_position') : '5';
-        $icon_font_size = get_option(option: 'cmcw_icon_size') !== '' ? get_option('cmcw_icon_size') : '20';
+        $icon_font_size = get_option('cmcw_icon_size') !== '' ? get_option('cmcw_icon_size') : '20';
         $count_bg_color = get_option('cmcw_count_bg_color') !== '' ? get_option('cmcw_count_bg_color') : '#dd9933';
         $count_text_color = get_option('cmcw_text_color') !== '' ? get_option('cmcw_text_color') : '#ffffff';
         $count_icon_color = get_option('cmcw_icon_color') !== '' ? get_option('cmcw_icon_color') : '#000000'; // Need to change the name
@@ -83,7 +83,7 @@ class CMCW_Shortcode
 
             $cart_count = esc_html(WC()->cart->get_cart_contents_count());
 
-            $shortcode_html = '<div class="cmcw-shortcode-container"><i class="' . esc_attr(text: $icon_class) . '"></i>' . '<span class="cmcw-cart-count">'
+            $shortcode_html = '<div class="cmcw-shortcode-container"><i class="' . esc_attr($icon_class) . '"></i>' . '<span class="cmcw-cart-count">'
                 . $cart_count . '</span></div>';
 
             $filtered_html = apply_filters('cmcw_html_loaded', $shortcode_html);
