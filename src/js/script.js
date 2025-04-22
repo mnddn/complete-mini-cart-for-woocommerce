@@ -6,6 +6,8 @@ jQuery(document).ready(function ($) {
       data: { action: "cmcw_update_cart_count" },
       success: function (response) {
         $(".cmcw-cart-count").text(response.count);
+        $("#cmcw-cart-contents").html(response.cart_html);
+        $("#cmcw-widget-cart-contents").html(response.cart_html);
       },
     });
   }
@@ -25,14 +27,22 @@ jQuery(document).ready(function ($) {
 
   $(".cmcw-shortcode-container").on("mouseenter", function () {
     $("#cmcw-cart-sidebar").addClass("cmcw-opened");
-    // loadCartContents();
+  });
+
+  $(".cmcw-widget-container").on("mouseenter", function () {
+    $("#cmcw-widget-cart-sidebar").addClass("cmcw-widget-opened");
   });
 
   $("#cmcw-cart-close").on("click", function () {
     $("#cmcw-cart-sidebar").removeClass("cmcw-opened");
   });
 
+  $("#cmcw-widget-cart-close").on("click", function () {
+    $("#cmcw-widget-cart-sidebar").removeClass("cmcw-widget-opened");
+  });
+
   // Disable link when inside the cart sidebar
+
   const CmcwSidebar = document.getElementById("cmcw-cart-sidebar");
   const CmcwParentLink = CmcwSidebar.closest("a"); // Get the nearest parent <a>
 
@@ -46,6 +56,16 @@ jQuery(document).ready(function ($) {
       CmcwParentLink.setAttribute("href", CmcwParentLink.dataset.href); // restore href
       delete CmcwParentLink.dataset.href;
       $("#cmcw-cart-sidebar").removeClass("cmcw-opened"); // close the sidebar
+    });
+  }
+
+  // Disable sidebar on mouseleave
+
+  const CmcwWidgetSidebar = document.getElementById("cmcw-widget-cart-sidebar");
+
+  if (CmcwWidgetSidebar) {
+    CmcwWidgetSidebar.addEventListener("mouseleave", function () {
+      $("#cmcw-widget-cart-sidebar").removeClass("cmcw-widget-opened");
     });
   }
 });

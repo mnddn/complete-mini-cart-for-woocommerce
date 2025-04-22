@@ -102,7 +102,48 @@ class CMCW_Shortcode
         }
 
         $cart_count = WC()->cart->get_cart_contents_count();
-        wp_send_json(array('count' => $cart_count));
+        $cart_html = $this->cmcw_add_cart_items_to_sidebar();
+        wp_send_json(array('count' => $cart_count, 'cart_html' => $cart_html));
+
+        wp_die(); // Always die in functions echoing Ajax content
+    }
+
+    public function cmcw_add_cart_items_to_sidebar()
+    {
+        ob_start();
+
+        if (WC()->cart->is_empty()) {
+            echo '<p class="cmcw-no-items">Your cart is empty.</p>';
+        } else {
+
+            echo '<div class="cmcw-cart-item-wrapper">';
+            foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+                $_product = $cart_item['data'];
+                $product_id = $cart_item['product_id'];
+                $thumbnail = wp_kses_post($_product->get_image(array(60, 60), array('class' => 'cart-thumb')));
+
+                echo '<div class="cmcw-cart-item">';
+                echo '<div class="cmcw-cart-thumb">' . $thumbnail . '</div>';
+                echo '<div class="cmcw-cart-details">';
+                echo '<strong class="cmcw-cart-item-title">' . esc_html($_product->get_name()) . '</strong>';
+                echo '<p class="cmcw-cart-item-price">' . wp_kses_post($_product->get_price());
+                echo ' <span class="cmcw-quantity"> x ' . intval($cart_item['quantity']) . '</span> = ' . wc_price($cart_item['line_total']) . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+            echo '</div>';
+
+            echo '<div class="cmcw-cart-footer">';
+            echo '<p class="cmcw-cart-total">Total: ' . wp_kses_post(WC()->cart->get_cart_subtotal()) . '</p>';
+            echo '<div class="cmcw-cart-btns">';
+            echo '<a href="' . esc_url(wc_get_cart_url()) . '" class="cmcw-cart-btn">View Cart</a>';
+            echo '<a href="' . esc_url(wc_get_checkout_url()) . '" class="cmcw-cart-btn">Checkout</a>';
+            echo '</div>';
+            echo '</div>';
+        }
+
+        $cart_html = ob_get_clean();
+        return $cart_html;
     }
 }
 

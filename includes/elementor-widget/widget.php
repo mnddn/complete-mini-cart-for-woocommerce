@@ -291,5 +291,8 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
             </a>
             <?php
         }
+
+        $sidebar_html = apply_filters('cmcw_widget_loaded', '');
+        echo $sidebar_html;
     }
 }

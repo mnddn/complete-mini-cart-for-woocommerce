@@ -33,6 +33,13 @@ class CMCW_Sidebar
             10,
             1
         );
+
+        add_filter(
+            'cmcw_widget_loaded',
+            array($this, 'cmcw_add_sidebar_html_for_widget'),
+            10,
+            1
+        );
     }
 
     public function cmcw_add_sidebar_html($content)
@@ -40,13 +47,28 @@ class CMCW_Sidebar
         $sidebar_html = '<div id="cmcw-cart-sidebar" class="cmcw-cart-sidebar">
                             <div class="cmcw-cart-sidebar-header">
                                 <h4>Your Cart</h4>
-                                <span id="cmcw-cart-close">×</span>
+                                <i id="cmcw-cart-close" class="fa-solid fa-xmark"></i>
                             </div>
                             <div id="cmcw-cart-contents">
                             </div>
                         </div>';
         return $content . $sidebar_html;
     }
+
+    public function cmcw_add_sidebar_html_for_widget($content)
+    {
+        $sidebar_html = '<div id="cmcw-widget-cart-sidebar" class="cmcw-widget-cart-sidebar">
+                            <div class="cmcw-cart-sidebar-header">
+                                <h4>Your Cart</h4>
+                                <i id="cmcw-widget-cart-close" class="fa-solid fa-xmark"></i>
+                            </div>
+                            <div id="cmcw-widget-cart-contents">
+                            </div>
+                        </div>';
+        return $content . $sidebar_html;
+    }
+
+
 }
 
 // Usage example

@@ -12,7 +12,6 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       complete-mini-cart-for-woocommerce
- * Requires Plugins:  woocommerce
  */
 
 // If this file is called directly, abort.
@@ -43,11 +42,47 @@ class CMCW_Plugin
      */
     private function __construct()
     {
+        if (!$this->cmcw_is_woocommerce_active()) {
+            add_action('admin_notices', [$this, 'cmcw_admin_notice_woocommerce_required']);
+            return;
+        }
+
         $this->define_constants();
         $this->load_dependencies();
         $this->load_admin_submenu_page();
         add_action('plugins_loaded', [$this, 'init']);
         add_filter('walker_nav_menu_start_el', [$this, 'enable_short_code_support'], 10, 1);
+    }
+
+    public function cmcw_is_woocommerce_active()
+    {
+        return in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))
+            || (is_multisite() && isset(get_site_option('active_sitewide_plugins')['woocommerce/woocommerce.php']));
+    }
+
+    public function cmcw_admin_notice_woocommerce_required()
+    {
+        $plugin_file = 'woocommerce/woocommerce.php';
+
+        echo '<div class="notice notice-warning is-dismissible">';
+        echo '<p><strong>' . esc_html__('Complete Mini Cart for WooCommerce', 'complete-mini-cart-for-woocommerce') . '</strong> ';
+        echo esc_html__('requires WooCommerce to be installed and activated to work properly.', 'complete-mini-cart-for-woocommerce') . '</p>';
+
+        if (current_user_can('activate_plugins') && file_exists(WP_PLUGIN_DIR . '/' . $plugin_file)) {
+            $activation_url = wp_nonce_url(
+                self_admin_url('plugins.php?action=activate&plugin=' . $plugin_file),
+                'activate-plugin_' . $plugin_file
+            );
+            echo '<p><a href="' . esc_url($activation_url) . '" class="button-primary">' . esc_html__('Activate WooCommerce', 'complete-mini-cart-for-woocommerce') . '</a></p>';
+        } elseif (current_user_can('install_plugins')) {
+            $install_url = wp_nonce_url(
+                self_admin_url('update.php?action=install-plugin&plugin=woocommerce'),
+                'install-plugin_woocommerce'
+            );
+            echo '<p><a href="' . esc_url($install_url) . '" class="button-primary">' . esc_html__('Install WooCommerce', 'complete-mini-cart-for-woocommerce') . '</a></p>';
+        }
+
+        echo '</div>';
     }
 
     /**
@@ -92,7 +127,7 @@ class CMCW_Plugin
         $settings_link = sprintf(
             '<a href="%s">%s</a>',
             esc_url($settings_url),
-            esc_html__('Settings', 'complete-mini-cart')
+            esc_html__('Settings', 'complete-mini-cart-for-woocommerce')
         );
 
         array_unshift($links, $settings_link);
