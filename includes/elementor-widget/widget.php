@@ -133,19 +133,20 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-            'color',
+            'cmcw_icon_color',
             [
                 'label' => esc_html__('Color', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#000000',
                 'selectors' => [
-                    '{{WRAPPER}} .cmcw-widget-container svg' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .cmcw-widget-container svg' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .cmcw-widget-container i' => 'color: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'size',
+            'cmcw_icon_size',
             [
                 'label' => esc_html__('Size', 'complete-mini-cart-for-woocommerce'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
@@ -159,6 +160,7 @@ class Cmcw_Mini_Cart extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .cmcw-widget-container' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .cmcw-widget-container i' => 'font-size:{{SIZE}}{{UNIT}};',
                 ],
             ]
         );
