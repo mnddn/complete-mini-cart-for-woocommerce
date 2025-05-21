@@ -1,10 +1,10 @@
 === Complete Mini Cart for WooCommerce ===
 Contributors: moinuddinmunna
-Tags: Complete Mini Cart for WooCommerce, mini cart, woocommerce mini cart, ajax cart, woocommerce cart
+Tags: complete Mini Cart for WooCommerce, mini cart, woocommerce mini cart, ajax cart, woocommerce cart
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 Short Description: A powerful, lightweight, and fully customizable mini cart plugin to improve user experience with an AJAX-powered cart and real-time updates.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html

@@ -81,7 +81,10 @@ class CMCW_Shortcode
         if (class_exists('WooCommerce')) {
             $icon_class = get_option('cmcw_icon_name') !== '' ? get_option('cmcw_icon_name') : 'fas fa-cart-plus';
 
-            $cart_count = esc_html(WC()->cart->get_cart_contents_count());
+            $cart_count = 0;
+            if (function_exists('WC') && WC()->cart) {
+                $cart_count = esc_html(WC()->cart->get_cart_contents_count());
+            }
 
             $shortcode_html = '<div class="cmcw-shortcode-container"><i class="' . esc_attr($icon_class) . '"></i>' . '<span class="cmcw-cart-count">'
                 . $cart_count . '</span></div>';
@@ -99,6 +102,7 @@ class CMCW_Shortcode
     {
         if (!class_exists('WooCommerce') || !WC()->cart) {
             wp_send_json_success(array('count' => 0));
+            wp_die(); // Always die in functions echoing Ajax content
         }
 
         $cart_count = WC()->cart->get_cart_contents_count();

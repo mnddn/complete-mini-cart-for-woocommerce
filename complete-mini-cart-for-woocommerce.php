@@ -4,7 +4,7 @@
  * Plugin Name:       Complete Mini Cart for WooCommerce
  * Plugin URI:        https://cmcw.mnddn.site/
  * Description:       This plugin adds a mini cart feature to your WooCommerce store. An Elementor Widget and a shortcode. All that you needed in one simple plugin.
- * Version:           2.0.3
+ * Version:           2.0.4
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Moin Munna
@@ -54,6 +54,16 @@ class CMCW_Plugin
         add_filter('walker_nav_menu_start_el', [$this, 'enable_short_code_support'], 10, 1);
     }
 
+    /**
+     * Define plugin constants
+     */
+    private function define_constants()
+    {
+        define('CMCW_PATH', plugin_dir_path(__FILE__));
+        define('CMCW_URL', plugin_dir_url(__FILE__));
+        define('CMCW_VERSION', '2.0.4');
+    }
+
     public function cmcw_is_woocommerce_active()
     {
         return in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))
@@ -85,15 +95,7 @@ class CMCW_Plugin
         echo '</div>';
     }
 
-    /**
-     * Define plugin constants
-     */
-    private function define_constants()
-    {
-        define('CMCW_PATH', plugin_dir_path(__FILE__));
-        define('CMCW_URL', plugin_dir_url(__FILE__));
-        define('CMCW_VERSION', '2.0.3');
-    }
+
 
     /**
      * Load required plugin files
