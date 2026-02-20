@@ -2,7 +2,7 @@
 Contributors: moinuddinmunna
 Tags: complete Mini Cart for WooCommerce, mini cart, woocommerce mini cart, ajax cart, woocommerce cart
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 2.0.4
 Short Description: A powerful, lightweight, and fully customizable mini cart plugin to improve user experience with an AJAX-powered cart and real-time updates.
